@@ -1,0 +1,704 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+@font-face {
+   font-family: 'NANUMSQUAREROUNDB';
+   src: url('/resources/fonts/NANUMSQUAREROUNDB.TTF');
+}
+
+a, p, h1, div {
+   text-align: left;
+   font-family: 'NANUMSQUAREROUNDB' !important;
+   font-weight: 300;
+}
+
+a:hover {
+    color: green !important;
+}
+
+/* The Modal (background) */
+.modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0, 0, 0); /* Fallback color */
+   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 20px;
+   border: 1px solid #888;
+   width: 50%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover, .close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+h1 {
+   margin-bottom: 1em;
+   text-align: center;
+}
+
+.signUp-page {
+   width: 1000px;
+   padding: 2% 0 0;
+   margin: auto;
+}
+
+.form {
+   position: relative;
+   z-index: 1;
+   margin: 0 -307px 100px;
+   padding: 45px;
+   /* text-align: center; */
+}
+
+.form input {
+   font-family: "Roboto", sans-serif;
+   outline: 0;
+   background: #f2f2f2;
+   width: 100%;
+   border: 0;
+   margin: 0 0 15px;
+   padding: 15px;
+   box-sizing: border-box;
+   font-size: 14px;
+}
+
+#u_addr1 {
+   font-family: "Roboto", sans-serif;
+   outline: 0;
+   background: #f2f2f2;
+   width: 71%;
+   border: 0;
+   margin: 0 0 15px;
+   padding: 15px;
+   box-sizing: border-box;
+   font-size: 14px;
+   float: left;
+}
+
+#addrBtn {
+   font-family: "Roboto", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #2E6CC9;
+   width: 25%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   margin-bottom: 0.8em;
+   float: right;
+}
+
+.form button {
+   font-family: "Roboto", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #2E6CC9;
+   width: 100%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   margin-bottom: 0.8em;
+}
+
+.form button:hover, .form button:active, .form button:focus, #addrBtn:hover
+   {
+   background: #214F94;
+}
+
+.form .message {
+   margin: 15px 0 0;
+   color: #b3b3b3;
+   font-size: 12px;
+}
+
+.form .message a {
+   color: #4CAF50;
+   text-decoration: none;
+}
+
+.form .register-form {
+   display: none;
+}
+
+.info {
+   overflow: auto;
+}
+
+#productDetail .thumb-info .info .tit-prd {
+   font-size: 21px;
+   color: #1c1c1c;
+}
+
+.prd_list {
+   /* list-style-type: none; */
+   float: left;
+   margin-right: 5px;
+}
+
+.loc-r, .loc-r a {
+   color: #5d5d5d;
+   text-transform: capitalize;
+   font-size: 12px;
+   font-weight: bold;
+   margin-top: -15px;
+}
+
+.loc-r {
+   float: right;
+   line-height: 1px;
+}
+
+.thumb {
+   margin: 0 auto;
+   width: 600px;
+}
+
+.info {
+   float: right;
+   width: 500px;
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+#productDetail .thumb-info .info .table-opt {
+   margin-top: 20px;
+}
+
+#productDetail .thumb-info .info .table-opt td {
+   color: #555;
+}
+
+#productDetail .thumb-info .info .table-opt th, #productDetail .thumb-info .info .table-opt td
+   {
+   padding: 7px 0;
+}
+
+#productDetail .thumb-info:after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
+#productDetail .thumb-info .thumb-wrap {
+   float: left;
+   width: 600px;
+   text-align: center;
+}
+
+#contentWrap {
+   min-height: 520px;
+   padding-top: 50px;
+}
+
+#layerWrap, #contentWrap, #ftLink .link, #footer {
+   position: relative;
+}
+
+#contentWrap:after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
+#header, #content, #footer {
+   min-width: 1040px;
+   max-width: 1280px;
+   box-sizing: border-box;
+   padding: 0 40px;
+   margin: 0 auto;
+}
+
+div {
+   display: block;
+}
+
+body, h1, h2, h3, h4, h5, h6, table, input, select, textarea, a {
+   font-size: 16px;
+   /* line-height: 1.25; */
+   color: #777;
+}
+
+.hash_tag {
+   margin-top: 10px;
+}
+
+table {
+   width: 100%;
+   border-collapse: collapse;
+   border-spacing: 0;
+   table-layout: fixed;
+   word-wrap: break-word;
+   word-break: keep-all;
+}
+
+#productDetail .page-body {
+   margin-top: 20px;
+}
+
+.detail_image {
+   width: 500px;
+   height: 500px;
+}
+
+.hr {
+   bolder: 0;
+   height: 3px;
+   background: #000000;
+   width: 440px;
+   float: left;
+}
+
+.brand {
+   margin-botton: 20px;
+}
+
+tbody {
+   display: table-row-group;
+   vertical-align: middle;
+   border-color: inherit;
+}
+
+.tb-leftleft {
+   margin-top: 23px;
+}
+
+.twoBtn {
+   float: center;
+}
+
+.tb-left {
+   width: 400px;
+}
+
+#r_contents {
+   width: 1200px;
+   height: 150px;
+}
+
+#reply_btn {
+   font-family: "Roboto", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #33322e;
+   width: 240px;
+   height: 50px;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 18px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   margin-bottom: 0.8em;
+   float: right;
+}
+
+.soldout {
+   width: 300px;
+}
+
+/* 한마디 */
+.sectionPadding {
+   min-width: 940px;
+   padding-right: 40px;
+   padding-left: 40px;
+}
+
+.commentsCommon {
+   position: relative;
+   padding-top: 43px;
+   padding-bottom: 50px;
+   border-top: 1px solid #d9d9d9;
+}
+
+#container .sectionPadding>.innerContainer {
+   position: relative;
+   max-width: 1580px;
+   margin: 0 auto;
+}
+
+.commentsCommon .innerContainer>h1 {
+   float: left;
+   padding-right: 5px;
+   padding-left: 6px;
+   font-size: 19px;
+   font-weight: normal;
+   color: #3a3635;
+   line-height: 22px;
+}
+
+.commentsCommon .innerContainer>.desc {
+   float: left;
+   margin-top: 2px;
+   font-size: 13px;
+   color: #757271;
+   line-height: 18px;
+}
+
+.clear {
+   clear: both;
+}
+
+.writeComment {
+   position: relative;
+   clear: both;
+   overflow: hidden;
+   margin-top: 16px;
+   padding-bottom: 10px;
+}
+
+.writeComment .cover {
+   display: block;
+   overflow: hidden;
+   width: 91.7%;
+   width: calc(100% - 78px);
+   border: 1px solid #C4C2C2;
+   border-radius: 3px;
+}
+
+.writeComment textarea {
+   display: block;
+   box-sizing: border-box;
+   overflow: hidden;
+   height: 100%;
+   max-height: 66px;
+   width: 100%;
+   border: 0;
+}
+
+textarea {
+   -webkit-appearance: none;
+   display: block;
+   height: 124px;
+   width: auto;
+   padding: 10px;
+   font-size: 13px;
+   color: #3A3635;
+   border: 1px solid #c4c2c2;
+   border-radius: 3px;
+   resize: none;
+}
+
+.writeComment>.btnWrite {
+   display: block;
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 68px;
+   width: 68px;
+   font-size: 13px;
+   color: #3a3635;
+   line-height: 68px;
+   text-align: center;
+   border: 1px solid #b4b2b3;
+   background-color: #fff;
+}
+
+button:active {
+   color: inherit;
+}
+
+button {
+   cursor: pointer;
+   border: 0px none;
+   background-color: transparent;
+}
+
+.writeComment>.remain {
+   float: right;
+   margin: 8px 86px 0 0;
+   font-size: 12px;
+   color: #999;
+}
+
+.commentsCommon .sorting {
+   padding-bottom: 12px;
+   text-align: right;
+}
+
+.sorting {
+   white-space: nowrap;
+}
+
+.sorting button.selected {
+   color: #3a3635;
+}
+
+.sorting button {
+   margin-left: 14px;
+   font-size: 13px;
+   color: #757271;
+   vertical-align: middle;
+}
+
+button {
+   cursor: pointer;
+   border: 0px none;
+   background-color: transparent;
+}
+
+.sorting button.selected>.icon {
+   background-color: #ff564c;
+}
+
+.sorting button>.icon {
+   display: inline-block;
+   height: 3px;
+   width: 3px;
+   margin-right: 5px;
+   vertical-align: middle;
+   background-color: #999;
+}
+
+.commentsCommon .btns.nextComments {
+   margin: 17px 0;
+   text-align: center;
+}
+
+.commentsCommon .btns.nextComments .btnMore {
+   background:
+      url(//file.bugsm.co.kr/wbugs/common/btns/btn_arrow_top_7x5.png) 100%
+      4px no-repeat;
+}
+
+.commentsCommon .btnMore {
+   padding-right: 12px;
+   font-size: 13px;
+   color: #757271;
+   background:
+      url(//file.bugsm.co.kr/wbugs/common/btns/btn_arrow_bottom_7x5.png)
+      100% 4px no-repeat;
+}
+
+ul.listComments {
+   border-top: 1px solid #efefef;
+}
+
+ul.listComments li {
+   position: relative;
+   overflow: hidden;
+   padding: 9px 0 6px;
+   word-break: break-word;
+   word-wrap: break-word;
+   border-bottom: 1px solid #efefef;
+}
+
+ol, ul, ul li {
+   list-style: none;
+}
+
+ul.listComments li .none {
+   padding: 53px 0 52px;
+   font-size: 13px;
+   color: #999;
+   text-align: center;
+}
+
+.commentsCommon .listComments ~ .btns {
+   margin-top: 20px;
+   text-align: center;
+}
+
+/* 기존 */
+#contentWrap {
+   min-height: 520px;
+   padding-top: 50px;
+}
+
+#layerWrap, #contentWrap, #ftLink .link, #footer {
+   position: relative;
+}
+
+#contentWrap:after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
+#header, #content, #footer {
+   min-width: 1040px;
+   max-width: 1280px;
+   box-sizing: border-box;
+   padding: 0 40px;
+   margin: 0 auto;
+}
+
+#earFunListDetail .page-body {
+   margin-top: 20px;
+}
+
+.spn {
+   font-family: Noto Sans KR, sans-serif;
+   font-weight: 300;
+   font-size: 20pt;
+   color: #000;
+   float: left;
+   margin-top: 20px;
+}
+
+.sectionPadding.contents02 {
+   padding-top: 42px;
+   border-top: 1px solid #d9d9d9;
+}
+
+#r_contents {
+   width: 1120px;
+   height: 150px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-left: 40px;
+}
+
+#reply_btn {
+   font-family: "Roboto", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #33322e;
+   width: 200px;
+   height: 50px;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 18px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   margin-bottom: 0.8em;
+   margin-right: 40px;
+   float: right;
+}
+
+section.reply-list {
+   padding: 30px 0;
+}
+
+section.reply-list ol {
+   padding: 0;
+   margin: 0;
+}
+
+section.reply-list ol li {
+   padding: 10px 0;
+   border-bottom: 2px none #eee;
+}
+
+section.reply-list div.userInfo .u_name {
+   font-size: 18px;
+   font-weight: bold;
+}
+
+section.reply-list div.userInfo .date {
+   color: #999;
+   display: inline-block;
+   margin-left: 10px;
+}
+
+section.reply-list div.replyContent {
+   padding: 10px;
+   margin: 20px 0;
+}
+
+.move img {
+   width: 20px;
+   height: 20px;
+   cursor: pointer;
+}
+
+[type=button]:not (:disabled ), [type=reset]:not (:disabled ), [type=submit]:not
+   (:disabled ), button:not (:disabled ) {
+   cursor: pointer;
+}
+
+.modify_btn {
+   font-family: "Roboto", sans-serif;
+   text-align: center;
+   text-transform: uppercase;
+   outline: 0;
+   border: 1px solid #b4b2b3;
+   background-color: #fff;
+   width: 275px;
+   height: 40px;
+   padding: 10px;
+   color: rgb(117, 114, 113);
+   font-size: 16px;
+   -webkit-transition: all 0.3 ease;
+   transition: all 0.3 ease;
+   cursor: pointer;
+   margin-bottom: 1.5em;
+}
+
+.sectionPadding .sectionTitle {
+   position: relative;
+   overflow: hidden;
+   margin-bottom: 18px;
+}
+
+.sectionPadding .sectionTitle>h1 {
+   float: left;
+   padding-right: 5px;
+   padding-left: 6px;
+   font-size: 19px;
+   font-weight: normal;
+   color: #3a3635;
+   line-height: 22px;
+}
+
+p {
+   margin: 0 0 1em;
+   line-height: 1.4285em;
+   display: block;
+   margin-block-start: 1em;
+   margin-block-end: 1em;
+   margin-inline-start: 0px;
+   margin-inline-end: 0px;
+}
+
+a {
+   margin: 0;
+   padding: 0;
+   color: #4183c4;
+   vertical-align: baseline;
+   background: transparent;
+}
+
+sectionn {
+   margin: 0;
+   padding: 0;
+   font-size: 100%;
+   vertical-align: baseline;
+   word-break: break-all;
+   word-wrap: break-word;
+   word-wrap: normal\9;
+   outline: 0;
+   border: 0;
+   background: transparent;
+   display: block;
+}

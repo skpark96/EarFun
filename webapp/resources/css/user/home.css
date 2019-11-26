@@ -1,0 +1,121 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+h1 {
+	text-align: center;
+	font-family: 'NANUMSQUAREROUNDB' !important;
+	font-weight: 300;
+	font-size: 20pt;
+}
+
+.my-page {
+	width: 500px;
+	padding: 5% 0 0;
+	margin: auto;
+}
+
+.form {
+	position: relative;
+	z-index: 1;
+	margin: 0 -307px 100px;
+	padding: 45px;
+	text-align: center;
+}
+
+@font-face {
+	font-family: 'NANUMSQUAREROUNDB';
+	src: url('/resources/fonts/NANUMSQUAREROUNDB.TTF');
+}
+
+div {
+	font-family: 'NANUMSQUAREROUNDB' !important;
+	font-weight: 300;
+}
+
+.info {
+	width: 200px;
+	height: 200px;
+	border: 5px solid #e1e5eb;
+	margin: 35px 0px;
+	text-align: center;
+	font-size: 20pt;
+	color: #000;
+	padding-top: 72px;
+}
+
+.info:hover {
+	transition: all 0.5s;
+	transition-timing-function: ease;
+	border: 10px solid #e1e5eb;
+	/* border-radius: 50%; */
+	/* background-color: #F00; */
+}
+
+.activity {
+	width: 200px;
+	height: 200px;
+	border: 5px solid #e1e5eb;
+	margin: 10px 0px;
+	text-align: center;
+	font-size: 20pt;
+	color: #000;
+	padding-top: 72px;
+}
+
+.activity:hover {
+	transition: all 0.5s;
+	transition-timing-function: ease;
+	border: 10px solid #e1e5eb;
+	/* border-radius: 50%; */
+	/* background-color: #F00; */
+}
+
+.order {
+	width: 200px;
+	height: 200px;
+	border: 5px solid #e1e5eb;
+	margin: 35px 0px;
+	text-align: center;
+	font-size: 20pt;
+	color: #000;
+	padding-top: 72px;
+}
+
+.order:hover {
+	transition: all 0.5s;
+	transition-timing-function: ease;
+	border: 10px solid #e1e5eb;
+	/* border-radius: 50%; */
+	/* background-color: #F00; */
+}
+
+.counsel {
+	width: 200px;
+	height: 200px;
+	border: 5px solid #e1e5eb;
+	margin: 10px 0px;
+	text-align: center;
+	font-size: 20pt;
+	color: #000;
+	padding-top: 72px;
+}
+
+.counsel:hover {
+	transition: all 0.5s;
+	transition-timing-function: ease;
+	border: 10px solid #e1e5eb;
+	/* border-radius: 50%; */
+	/* background-color: #F00; */
+}
+
+.floor1 {
+	/* margin: 0 30px 0 290px; */
+	display: inline-block;
+	width: 200px;
+	height: 440px;
+}
+
+.floor2 {
+	display: inline-block;
+	width: 200px;
+	height: 440px;
+}

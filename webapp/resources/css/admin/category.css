@@ -1,0 +1,26 @@
+@font-face {
+   font-family: 'NANUMSQUAREROUNDB';
+   src: url('/resources/fonts/NANUMSQUAREROUNDB.TTF');
+}
+
+a, p, h1, div, table, input {
+   margin-bottom: 1em;
+   font-family: 'NANUMSQUAREROUNDB' !important;
+   font-weight: 300;
+}
+
+.totalProducts {
+   display: inline-block;
+}
+
+.category00 {
+   float: left;
+}
+
+.category01 {
+   float: left;
+}
+
+.category02 {
+   float: left;
+}
