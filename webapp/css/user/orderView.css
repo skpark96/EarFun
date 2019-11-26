@@ -1,0 +1,197 @@
+#wrapper {
+	position: relative;
+	min-height: calc(100vh - 63px);
+	padding-bottom: 80px;
+}
+
+#contents {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+#contents, .footer {
+	min-width: 1024px;
+}
+
+.notice {
+	position: relative;
+	padding: 0 35px 30px;
+}
+
+.notice>h1 {
+	height: 137px;
+	padding-top: 79px;
+	font: 700 28px;
+	color: #17191d;
+	margin-bottom: 0;
+}
+
+.notice>h2 {
+	height: 137px;
+	padding-top: 79px;
+	font: 700 28px;
+	color: #17191d;
+	margin-bottom: 0;
+}
+
+.noticeList table {
+	width: 100%;
+}
+
+table.addrInfo {
+	width: 45%;
+}
+
+.noticeList col.cate, .noticeList col.date {
+	width: 100px;
+}
+
+col {
+	display: table-column;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.noticeList caption, .noticeList thead {
+	/* position: absolute; */
+	z-index: -1;
+	/* visibility: hidden; */
+}
+
+.noticeList tr {
+	height: 65px;
+	border-bottom: 1px solid #dde1e5;
+}
+
+noticeList td {
+	padding-bottom: 2px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.noticeList tbody {
+	border-top: 2px solid #17191d;
+}
+
+.noticeList td.tit {
+	text-align: left;
+	width: 500px;
+	padding-left: 50px;
+}
+
+.noticeList td.price {
+	text-align: center;
+	width: 250px;
+}
+
+.noticeList td.stock {
+	text-align: center;
+	width: 250px;
+}
+
+.noticeList td.addr {
+	margin-top: 21px;
+}
+
+.noticeList th.tit {
+	text-align: center;
+	width: 500px;
+}
+
+.noticeList th.price {
+	text-align: center;
+	width: 250px;
+}
+
+.noticeList th.stock {
+	text-align: center;
+	width: 250px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.noticeList td a {
+	color: #363940;
+}
+
+a {
+	color: #737881;
+	text-decoration: none;
+}
+
+.pagination {
+	text-align: center;
+}
+
+.noticeList-page {
+	margin-left: 735px;
+}
+
+.paginationNum {
+	padding: 0 0 0 2px;
+}
+
+.paginationNum strong {
+	color: #17191d;
+}
+
+.paginationNum a, .paginationNum strong {
+	display: inline-block;
+	height: 32px;
+	min-width: 32px;
+	padding: 6px 1px 0;
+	margin: 0 1px;
+	text-align: center;
+}
+
+.pagination .btEnd, .pagination .btFirst, .pagination .btNext,
+	.pagination .btPrev {
+	display: inline-block;
+	height: 32px;
+	width: 23px;
+	padding-top: 10px;
+	margin: 0 2px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.noticeList img {
+	width: 80px;
+	height: 80px;
+}
+
+.pay {
+	float: left;
+	width: 563px;
+}
+
+.addr {
+	float: left;
+	width: 563px;
+}
+
+.statusForm {
+	text-align: right;
+}
+
+button {
+	padding: 0 .5625rem;
+	color: white;
+	background: #191919;
+	border-radius: 0;
+	border: 1px solid #303030;
+	height: 2.125rem;
+	min-width: 4rem;
+	cursor: pointer;
+}
+
+.pay {
+	margin-bottom: 10px;
+}

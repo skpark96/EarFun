@@ -1,0 +1,400 @@
+#wrapper {
+	position: relative;
+	min-height: calc(100vh - 63px);
+	padding-bottom: 80px;
+}
+
+#contents {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+#contents, .footer {
+	min-width: 1024px;
+}
+
+.notice {
+	position: relative;
+	padding: 0 35px 30px;
+}
+
+.notice>h1 {
+	height: 137px;
+	padding-top: 79px;
+	font: 700 28px;
+	color: #17191d;
+	margin-bottom: 0;
+}
+
+.noticeList table {
+	width: 100%;
+}
+
+.noticeList col.cate, .noticeList col.date {
+	width: 100px;
+}
+
+col {
+	display: table-column;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.noticeList caption, .noticeList thead {
+	/* position: absolute; */
+	z-index: -1;
+	width: 1130px;
+	/* visibility: hidden; */
+}
+
+.noticeList tr {
+	border-bottom: 1px solid #dde1e5;
+	height: 65px;
+	/* cursor: pointer; */
+}
+
+noticeList td {
+	padding-bottom: 2px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.noticeList tbody.tbody {
+	border-top: 2px solid #17191d;
+}
+
+.noticeList tbody.tbody2 {
+	border: 1px solid #dde1e5;
+}
+
+.noticeList tbody.thead2 {
+	border: 1px solid #dde1e5;
+}
+
+.noticeList table.totalPrice {
+	border: 1px solid #dde1e5;
+}
+
+.noticeList td.cate {
+	font-size: 16px;
+	text-align: center;
+}
+
+.noticeList td.title {
+	padding-top: 4px;
+	padding-left: 15px;
+	font: 16px;
+	text-align: center;
+	width: 900px;
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+
+.noticeList td.thumb img {
+	width: 80px;
+	height: 80px;
+}
+
+.noticeList td.checkbox {
+	width: 80px;
+}
+
+.noticeList td.thumb {
+	width: 166px;
+}
+
+.noticeList td.title {
+	width: 276px;
+}
+
+.noticeList td.stock {
+	width: 226px;
+}
+
+.noticeList td.price {
+	width: 226px;
+}
+
+.noticeList td.btDelete {
+	width: 126px;
+}
+
+.noticeList th.checkbox {
+	width: 80px;
+}
+
+.noticeList th.thumb {
+	width: 166px;
+}
+
+.noticeList th.title {
+	width: 276px;
+}
+
+.noticeList th.stock {
+	width: 226px;
+}
+
+.noticeList th.price {
+	width: 226px;
+}
+
+.divCartList {
+	margin-top: 10px;
+}
+
+.ctrlTxt {
+	margin: 0 6px 0 10px;
+	color: #353535;
+	line-height: 24px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.noticeList td a {
+	color: #363940;
+}
+
+a {
+	color: #737881;
+	text-decoration: none;
+}
+
+.pagination {
+	text-align: center;
+}
+
+.noticeList-page {
+	margin-left: 735px;
+}
+
+.paginationNum {
+	padding: 0 0 0 2px;
+}
+
+.paginationNum strong {
+	color: #17191d;
+}
+
+.paginationNum a, .paginationNum strong {
+	display: inline-block;
+	height: 32px;
+	min-width: 32px;
+	padding: 6px 1px 0;
+	margin: 0 1px;
+	text-align: center;
+}
+
+.pagination .btEnd, .pagination .btFirst, .pagination .btNext,
+	.pagination .btPrev {
+	display: inline-block;
+	height: 32px;
+	width: 23px;
+	padding-top: 10px;
+	margin: 0 2px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary {
+	border: 1px solid #ccc;
+	color: #353535;
+	line-height: 1.5;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary th {
+	height: 39px;
+	border-left: 1px solid #ccc;
+	line-height: 39px;
+	background: #eee;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary th:first-child,
+	.xans-order-basketpackage .xans-order-totalsummary td:first-child {
+	border-left: 0;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td {
+	height: 58px;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	line-height: 58px;
+	text-align: center;
+	font-size: 23px;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary .price {
+	width: 33%;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary .option {
+	width: 34%;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td.total {
+	color: #0d2664;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary .total {
+	width: 33%;
+}
+
+.btBuy {
+	text-align: center;
+}
+
+.orderInfo {
+	border: 1px solid #eee;
+	padding: 20px;
+	display: none;
+}
+
+#o_rec {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 25%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#o_phone {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 25%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#u_addr1 {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 25%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#u_addr2 {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 49%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#u_addr3 {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 49%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+#addrBtn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #31353b;
+	width: 15%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+	margin-bottom: 0.8em;
+	margin-left: 0.8em;
+}
+
+.btOrder {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #31353b;
+	width: 15%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+	margin-bottom: 0.8em;
+}
+
+.btCancel {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #31353b;
+	width: 15%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+	margin-bottom: 0.8em;
+}
+
+.divO_rec {
+	margin-left: 370px;
+}
+
+.divO_phone {
+	margin-left: 370px;
+}
+
+.divU_addr1 {
+	margin-left: 370px;
+}
+
+.divU_addr2 {
+	margin-left: 467px;
+}
+
+.divU_addr3 {
+	margin-left: 467px;
+}
+
+.divBt {
+	margin-left: 450px;
+}
+
+.labelO_rec {
+	margin-right: 5px;
+}

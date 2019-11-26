@@ -1,0 +1,346 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+@font-face {
+	font-family: 'NANUMSQUAREROUNDB';
+	src: url('/resources/fonts/NANUMSQUAREROUNDB.TTF');
+}
+
+h1 {
+	text-align: left;
+	font-family: 'NANUMSQUAREROUNDB' !important;
+	font-weight: 300;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+h1 {
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+.signUp-page {
+	width: 1200px;
+	padding: 2% 0 0;
+	margin: auto;
+}
+
+#u_addr1 {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 71%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+	float: left;
+}
+
+#addrBtn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #2E6CC9;
+	width: 25%;
+	border: 0;
+	padding: 15px;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+	margin-bottom: 0.8em;
+	float: right;
+}
+
+.info {
+	width: 1200px;
+	overflow: auto;
+}
+
+.brd_list {
+	/* list-style-type: none; */
+	float: left;
+	margin-left: 50px;
+	margin-bottom: 60px;
+	text-align: center;
+	background-color: #f5f3f0;
+}
+
+.totalProducts {
+	display: inline-block;
+	width: 1200px;
+}
+
+.dummy {
+	padding: 0;
+	margin: 0;
+}
+
+.category00 {
+	float: left;
+}
+
+.category01 {
+	float: left;
+}
+
+.category02 {
+	float: left;
+}
+
+.category03 {
+	float: left;
+}
+
+.highPrice {
+	float: right;
+}
+
+.lowPrice {
+	float: right;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 29px;
+}
+
+.cart {
+	margin-bottom: 13px;
+}
+
+/* .prd_list:hover {
+   border: 4px solid grey;
+} */
+#contentWrap .prd_list .box_prd .price {
+	font-size: 20px;
+	position: absolute;
+	top: 120px;
+	padding-top: 340px;
+}
+
+.prd_list .box .box_prd .info .price {
+	font-size: 14px;
+	font-weight: 700;
+	color: #000;
+	padding: 15px 0 0 0;
+}
+
+a:link {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:active {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #333333;
+}
+
+/* table 속성 */
+#wrapper {
+	position: relative;
+	min-height: calc(100vh - 63px);
+	padding-bottom: 80px;
+}
+
+#contents {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+#contents, .footer {
+	min-width: 1024px;
+}
+
+.view {
+	position: relative;
+	padding: 0 35px 30px;
+}
+
+.view>h1 {
+	height: 137px;
+	padding-top: 79px;
+	font: 700 28px;
+	color: #17191d;
+	margin-bottom: 0;
+}
+
+.earFunList table {
+	width: 100%;
+}
+
+.earFunList col.title, .earFunList col.artist, .earFunList col.album {
+	width: 100px;
+}
+
+col {
+	display: table-column;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.earFunList caption, .earFunList thead {
+	position: absolute;
+	z-index: -1;
+	/* visibility: hidden; */
+}
+
+.earFunList tr {
+	height: 65px;
+	border-bottom: 1px solid #dde1e5;
+	cursor: pointer;
+}
+
+earFunList td {
+	padding-bottom: 2px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.earFunList tbody {
+	border-top: 2px solid #17191d;
+}
+
+.earFunList td.no {
+	font-size: 16px;
+	text-align: center;
+}
+
+.earFunList td.title {
+	padding-top: 4px;
+	padding-left: 15px;
+	font: 16px;
+	text-align: left;
+	width: 600px;
+}
+
+.earFunList td.artist {
+	width: 120px;
+}
+
+.earFunList td.album {
+	width: 120px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.noticeList td a {
+	color: #363940;
+}
+
+a {
+	color: #737881;
+	text-decoration: none;
+}
+
+.pagination {
+	text-align: center;
+}
+
+.noticeList-page {
+	margin-left: 735px;
+}
+
+.paginationNum {
+	padding: 0 0 0 2px;
+}
+
+.paginationNum strong {
+	color: #17191d;
+}
+
+.paginationNum a, .paginationNum strong {
+	display: inline-block;
+	height: 32px;
+	min-width: 32px;
+	padding: 6px 1px 0;
+	margin: 0 1px;
+	text-align: center;
+}
+
+.pagination .btEnd, .pagination .btFirst, .pagination .btNext,
+	.pagination .btPrev {
+	display: inline-block;
+	height: 32px;
+	width: 23px;
+	padding-top: 10px;
+	margin: 0 2px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.wrtite_btn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #33322e;
+	width: 100px;
+	height: 40px;
+	border: 0;
+	padding: 10px;
+	color: #FFFFFF;
+	font-size: 16px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+	margin-bottom: 0.8em;
+	float: right;
+}
+
+.hashtag {
+	font-size: 9pt;
+	color: #6b6b6b;
+}

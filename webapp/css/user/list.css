@@ -1,0 +1,147 @@
+@font-face {
+	font-family: 'NANUMSQUAREROUNDB';
+	src: url('/resources/fonts/NANUMSQUAREROUNDB.TTF');
+}
+
+a, h1, div, table {
+	font-family: 'NANUMSQUAREROUNDB' !important;
+	font-weight: 300;
+}
+
+a:hover {
+	color: green !important;
+}
+
+#wrapper {
+	position: relative;
+	min-height: calc(100vh - 63px);
+	padding-bottom: 80px;
+}
+
+#contents {
+	max-width: 1170px;
+	margin: 0 auto;
+}
+
+#contents, .footer {
+	min-width: 1024px;
+}
+
+.notice {
+	position: relative;
+	padding: 0 35px 30px;
+}
+
+.notice>h1 {
+	height: 137px;
+	padding-top: 79px;
+	color: #17191d;
+	margin-bottom: 0;
+}
+
+.noticeList table {
+	width: 100%;
+}
+
+.noticeList col.cate, .noticeList col.date {
+	width: 100px;
+}
+
+col {
+	display: table-column;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.noticeList caption, .noticeList thead {
+	position: absolute;
+	z-index: -1;
+	visibility: hidden;
+}
+
+.noticeList tr {
+	height: 65px;
+	border-bottom: 1px solid #dde1e5;
+	cursor: pointer;
+}
+
+noticeList td {
+	padding-bottom: 2px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.noticeList tbody {
+	border-top: 2px solid #17191d;
+}
+
+.noticeList td.cate {
+	font-size: 16px;
+	text-align: center;
+}
+
+.noticeList td.tit {
+	padding-top: 4px;
+	padding-left: 15px;
+	font: 16px;
+	text-align: left;
+	width: 900px;
+}
+
+.noticeList td.date {
+	width: 115px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}
+
+.noticeList td a {
+	color: #363940;
+}
+
+a {
+	color: #737881;
+	text-decoration: none;
+}
+
+.pagination {
+	text-align: center;
+}
+
+.noticeList-page {
+	text-align: center;
+}
+
+.paginationNum {
+	padding: 0 0 0 2px;
+}
+
+.paginationNum strong {
+	color: #17191d;
+}
+
+.paginationNum a, .paginationNum strong {
+	display: inline-block;
+	height: 32px;
+	min-width: 32px;
+	padding: 6px 1px 0;
+	margin: 0 1px;
+	text-align: center;
+}
+
+.pagination .btEnd, .pagination .btFirst, .pagination .btNext,
+	.pagination .btPrev {
+	display: inline-block;
+	height: 32px;
+	width: 23px;
+	padding-top: 10px;
+	margin: 0 2px;
+}
+
+#wrapper a, #wrapper button, #wrapper label {
+	transition: all .15s linear;
+}

@@ -1,0 +1,83 @@
+html, body {
+	font-size: 16px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #000000;
+}
+
+element.style {
+    opacity: 1;
+    width: 19200px;
+    transform: translate3d(-6000px, 0px, 0px);
+}
+
+.main-section.section-3 {
+    position: relative;
+    margin-top: 150px;
+    padding-bottom: 150px;
+}
+
+.main-section {
+	overflow: hidden;
+}
+
+.main-slider-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.content-wrap {
+	position: relative;
+	width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+div {
+	display: block;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 30px;
+}
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-slide img {
+    display: block;
+}
+
+.slick-slider .slick-track, .slick-slider .slick-list {
+	transform: translate3d(0, 0, 0);	
+}
+
+.slick-list {
+	position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+}
+
+.slick-slider, .slick-list, .slick-track {
+	height: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
