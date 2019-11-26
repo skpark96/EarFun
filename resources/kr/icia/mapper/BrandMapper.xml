@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.icia.mapper.BrandMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							u_id like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							u_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							approval_status like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<sql id="productsCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='P'.toString()">
+							p_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='B'.toString()">
+							p_brand like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getAukeyTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'AUKEY'
+	</select>
+
+	<!-- Aukey -->
+	<select id="getAukeyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'AUKEY'
+	</select>
+
+	<!-- Aukey -->
+	<select id="getLowPriceAukeyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'AUKEY' order by
+		p_price asc
+	</select>
+
+	<!-- Aukey -->
+	<select id="getHighPriceAukeyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'AUKEY' order by
+		p_price desc
+	</select>
+
+	<!-- Beats By Dr.Dre -->
+	<select id="getBeatsByDrDreListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = '비츠바이닥터드레'
+	</select>
+
+	<!-- Beats By Dr.Dre -->
+	<select id="getLowPriceBeatsByDrDreListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = '비츠바이닥터드레' order
+		by
+		to_number(p_price) asc
+	</select>
+
+	<!-- Beats By Dr.Dre -->
+	<select id="getHighPriceBeatsByDrDreListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = '비츠바이닥터드레' ORDER
+		BY
+		to_number(p_price) desc
+	</select>
+
+	<select id="getBeatsByDrDreTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = '비츠바이닥터드레'
+	</select>
+
+	<!-- Bose -->
+	<select id="getBoseListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BOSE'
+
+	</select>
+
+	<!-- Bose -->
+	<select id="getLowPriceBoseListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BOSE' order by
+		p_price asc
+
+	</select>
+
+	<!-- Bose -->
+	<select id="getHighPriceBoseListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BOSE' order by
+		p_price desc
+
+	</select>
+
+	<select id="getBoseTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'BOSE'
+	</select>
+
+	<!-- Britz -->
+	<select id="getBritzListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BRITZ'
+
+	</select>
+
+	<!-- Britz -->
+	<select id="getLowPriceBritzListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BRITZ' order by
+		p_price asc
+
+	</select>
+
+	<!-- Britz -->
+	<select id="getHighPriceBritzListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'BRITZ' order by
+		p_price desc
+
+	</select>
+
+	<select id="getBritzTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'BRITZ'
+	</select>
+
+	<!-- Etymotic -->
+	<select id="getEtymoticListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'ETYMOTIC'
+
+	</select>
+
+	<!-- Etymotic -->
+	<select id="getLowPriceEtymoticListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'ETYMOTIC' order
+		by p_price asc
+
+	</select>
+
+	<!-- Etymotic -->
+	<select id="getHighPriceEtymoticListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'ETYMOTIC' order
+		by p_price desc
+
+	</select>
+
+	<select id="getEtymoticTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'ETYMOTIC'
+	</select>
+
+	<!-- GoGroove -->
+	<select id="getGoGrooveListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'GOGROOVE'
+
+	</select>
+
+	<!-- GoGroove -->
+	<select id="getLowPriceGoGrooveListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'GOGROOVE' order
+		by p_price asc
+
+	</select>
+
+	<!-- GoGroove -->
+	<select id="getHighPriceGoGrooveListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'GOGROOVE' order
+		by p_price desc
+
+	</select>
+
+	<select id="getGoGrooveTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'GOGROOVE'
+	</select>
+
+	<!-- Kaotica -->
+	<select id="getKaoticaListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'KAOTICA'
+
+	</select>
+
+	<!-- Kaotica -->
+	<select id="getLowPriceKaoticaListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'KAOTICA' order
+		by p_price asc
+
+	</select>
+
+	<!-- Kaotica -->
+	<select id="getHighPriceKaoticaListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'KAOTICA' order
+		by p_price desc
+
+	</select>
+
+	<select id="getKaoticaTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'KAOTICA'
+	</select>
+
+	<!-- Nexum -->
+	<select id="getNexumListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'NEXUM'
+
+	</select>
+
+	<!-- Nexum -->
+	<select id="getLowPriceNexumListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'NEXUM' order by
+		p_price asc
+
+	</select>
+
+	<!-- Nexum -->
+	<select id="getHighPriceNexumListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'NEXUM' order by
+		p_price desc
+
+	</select>
+
+	<select id="getNexumTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'NEXUM'
+	</select>
+
+	<!-- Sony -->
+	<select id="getSonyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'SONY'
+
+	</select>
+
+	<!-- Sony -->
+	<select id="getLowPriceSonyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'SONY' order by
+		to_number(p_price) asc
+
+	</select>
+
+	<!-- Sony -->
+	<select id="getHighPriceSonyListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_brand = 'SONY' order by
+		to_number(p_price) desc
+
+	</select>
+
+	<select id="getSonyTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'SONY'
+	</select>
+
+	<!-- Westone -->
+	<select id="getWestoneListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+
+		select * from tbl_products where p_brand = 'WESTONE'
+	</select>
+
+	<!-- Westone -->
+	<select id="getLowPriceWestoneListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+
+		select * from tbl_products where p_brand = 'WESTONE' order
+		by p_price asc
+	</select>
+
+	<!-- Westone -->
+	<select id="getHighPriceWestoneListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+
+		select * from tbl_products where p_brand = 'WESTONE' order
+		by p_price desc
+	</select>
+
+	<select id="getWestoneTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_brand = 'WESTONE'
+	</select>
+
+
+</mapper>

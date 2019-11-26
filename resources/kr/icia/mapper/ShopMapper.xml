@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.icia.mapper.ShopMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							u_id like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							u_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							approval_status like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<sql id="productsCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='P'.toString()">
+							p_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='B'.toString()">
+							p_brand like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getNewArrivalsListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from
+		(select * from tbl_products order by p_date desc)
+		where <![CDATA[ rownum <= 3 ]]>
+	</select>
+
+	<!-- 1차 : 이어폰/헤드폰 -->
+	<select id="getCategory00ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 100
+	</select>
+
+	<!-- 1차 : 이어폰/헤드폰 -->
+	<select id="getLowPriceCategory00ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 100 order by
+		to_number(p_price) asc
+	</select>
+
+	<!-- 1차 : 이어폰/헤드폰 -->
+	<select id="getHighPriceCategory00ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 100 order by
+		to_number(p_price) desc
+	</select>
+
+	<select id="getCategory00TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_category = 100
+	</select>
+
+	<!-- 2차 : 이어폰 -->
+	<select id="getCategory01ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 101
+
+	</select>
+
+	<!-- 2차 : 이어폰 -->
+	<select id="getLowPriceCategory01ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 101 order
+		by to_number(p_price) asc
+
+	</select>
+
+	<!-- 2차 : 이어폰 -->
+	<select id="getHighPriceCategory01ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 101 order
+		by to_number(p_price) desc
+
+	</select>
+
+	<select id="getCategory01TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 101
+	</select>
+
+	<!-- 2차 : 헤드폰 -->
+	<select id="getCategory02ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 102
+
+	</select>
+
+	<!-- 2차 : 헤드폰 -->
+	<select id="getLowPriceCategory02ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 102 order
+		by to_number(p_price) asc
+
+	</select>
+
+	<!-- 2차 : 헤드폰 -->
+	<select id="getHighPriceCategory02ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 102 order
+		by to_number(p_price) desc
+
+	</select>
+
+	<select id="getCategory02TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 102
+	</select>
+
+	<!-- 2차 : 블루투스 -->
+	<select id="getCategory03ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 103
+
+	</select>
+
+	<!-- 2차 : 블루투스 -->
+	<select id="getLowPriceCategory03ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 103 order
+		by to_number(p_price) asc
+
+	</select>
+
+	<!-- 2차 : 블루투스 -->
+	<select id="getHighPriceCategory03ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 103 order
+		by to_number(p_price) desc
+
+	</select>
+
+	<select id="getCategory03TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 103
+	</select>
+
+	<!-- 1차 : 악세서리 -->
+	<select id="getCategory10ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 200
+	</select>
+
+	<!-- 1차 : 악세서리 -->
+	<select id="getLowPriceCategory10ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 200 order by
+		to_number(p_price) asc
+	</select>
+
+	<!-- 1차 : 악세서리 -->
+	<select id="getHighPriceCategory10ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_category = 200 order by
+		to_number(p_price) desc
+	</select>
+
+	<select id="getCategory10TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_category = 200
+	</select>
+
+	<!-- 2차 : 케이블 -->
+	<select id="getCategory11ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 201
+
+	</select>
+
+	<!-- 2차 : 케이블 -->
+	<select id="getLowPriceCategory11ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 201 order
+		by to_number(p_price) asc
+
+	</select>
+
+	<!-- 2차 : 케이블 -->
+	<select id="getHighPriceCategory11ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 201 order
+		by to_number(p_price) desc
+
+	</select>
+
+	<select id="getCategory11TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 201
+	</select>
+
+	<!-- 2차 : 케이스/파우치 -->
+	<select id="getCategory12ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 202
+	</select>
+
+	<!-- 2차 : 케이스/파우치 -->
+	<select id="getLowPriceCategory12ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 202 order
+		by to_number(p_price) asc
+	</select>
+
+	<!-- 2차 : 케이스/파우치 -->
+	<select id="getHighPriceCategory12ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 202 order
+		by to_number(p_price) desc
+	</select>
+
+	<select id="getCategory12TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 202
+	</select>
+
+	<!-- 2차 : 청소도구 -->
+	<select id="getCategory13ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 203
+	</select>
+
+	<!-- 2차 : 청소도구 -->
+	<select id="getLowPriceCategory13ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 203 order
+		by to_number(p_price) asc
+	</select>
+
+	<!-- 2차 : 청소도구 -->
+	<select id="getHighPriceCategory13ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products where p_sub_category = 203 order
+		by to_number(p_price) desc
+	</select>
+
+	<select id="getCategory13TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_sub_category = 203
+	</select>
+
+	<select id="shopView" resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products
+		where
+		p_no = #{p_no}
+	</select>
+
+	<!-- 후기 작성 -->
+	<insert id="replyRegister">
+		insert into tbl_reply (p_no, u_id, r_no, r_contents)
+		values (#{p_no}, #{u_id}, tbl_seq_reply.nextval, #{r_contents})
+	</insert>
+
+	<!-- 후기 리스트 -->
+	<select id="replyList" resultType="kr.icia.domain.ReplyListVO">
+		select r.p_no, r.u_id, r.r_no,
+		r.r_contents,
+		r.r_date, r.rating, u.u_name
+		from tbl_reply r
+		inner join
+		tbl_user u
+		on r.u_id =
+		u.u_id
+		where p_no = #{p_no}
+		order by r_date desc
+	</select>
+
+	<!-- 후기 삭제 -->
+	<delete id="deleteReply">
+		delete tbl_reply
+		where r_no = #{r_no} 
+		and u_id =
+		#{u_id}
+	</delete>
+
+	<!-- 후기 삭제 시 아이디 체크 -->
+	<select id="replyUserIdCheck" resultType="String">
+		select u_id
+		from
+		tbl_reply
+		where r_no = #{r_no}
+	</select>
+
+	<select id="getReplyTotalCount" resultType="int">
+		select count(r_no) from tbl_reply where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	r_no > 0
+	]]>
+	</select>
+
+	<insert id="addCart">
+		insert into tbl_cart (c_no, u_id, p_no, c_stock)
+		select tbl_seq_cart.nextval, #{u_id}, #{p_no}, #{c_stock} from dual
+		where not exists (select 0 from tbl_cart where p_no = #{p_no})
+	</insert>
+
+	<!-- 장바구니 목록 -->
+	<select id="cartList" resultType="kr.icia.domain.CartListVO">
+		select row_number() over(order
+		by c.c_no desc) as num,
+		c.c_no, c.u_id, c.p_no, c.c_stock, c.c_date,
+		p.p_name, p.p_price, p.p_thumbImg
+		from tbl_cart c
+		inner join
+		tbl_products p
+		on c.p_no = p.p_no
+		where c.u_id = #{u_id}
+	</select>
+
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		delete tbl_cart where c_no = #{c_no} and u_id =
+		#{u_id}
+	</delete>
+
+	<select id="getCartListTotalCount" resultType="int">
+		select count(c_no)
+		from tbl_cart where
+		c_no > 0
+	</select>
+
+	<!-- 주문 정보 -->
+	<insert id="orderInfo">
+		insert into tbl_order(o_id, u_id, o_rec, u_addr1,
+		u_addr2, u_addr3, o_phone, total_price)
+		values (#{o_id}, #{u_id},
+		#{o_rec}, #{u_addr1}, #{u_addr2}, #{u_addr3}, #{o_phone},
+		#{total_price})
+	</insert>
+
+	<!-- 주문 디테일 정보 -->
+	<insert id="orderInfoDetails">
+		insert into tbl_order_details(o_no, o_id, p_no,
+		c_stock)
+		select tbl_seq_order_details.nextval, #{o_id}, p_no, c_stock
+		from tbl_cart
+	</insert>
+
+	<delete id="deleteAllCart">
+		delete tbl_cart
+		where u_id = #{u_id}
+	</delete>
+
+	<!-- 특정 유저의 주문 목록 -->
+	<select id="orderList" resultType="kr.icia.domain.OrderVO">
+		select o_id, u_id, o_rec,
+		u_addr1, u_addr2, u_addr3,
+		o_phone, total_price, o_date, status
+		from
+		tbl_order
+		where u_id = #{u_id}
+	</select>
+
+	<!-- 특정 주문 목록 -->
+	<select id="orderView" resultType="kr.icia.domain.OrderListVO">
+		select o.o_id, o.u_id,
+		o.o_rec, o.u_addr1, o.u_addr2, o.u_addr3, o.o_phone, o.total_price,
+		o.o_date, o.status, d.o_no, d.p_no, d.c_stock, p.p_name, p.p_thumbImg,
+		p.p_price
+		from tbl_order o inner join tbl_order_details d
+		on o.o_id =
+		d.o_id inner join tbl_products p
+		on d.p_no = p.p_no
+		where o.u_id =
+		#{u_id}
+		and o.o_id = #{o_id}
+	</select>
+
+</mapper>

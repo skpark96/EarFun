@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- - 매칭은 약도와 현실의 길을 일치 시키는 과정이다.
+	   - 쿼리문 끝에 ';' 를 붙이지 않아야 한다.
+	   - resultType은 String을 표기할 때, 소문자 s로 시작한다.
+	   - 이전 했던 작업 중, 문자열로 담아서 처리하는 과정과는 비슷하면서도 다르다. -->
+<mapper namespace="kr.icia.mapper.TimeMapper">
+	<select id="getTime2" resultType="string">
+		select sysdate sd2 from dual
+	</select>
+</mapper>

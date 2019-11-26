@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.icia.mapper.AdminMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							u_id like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							u_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							approval_status like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 퍼니's 검색 -->
+	<sql id="funnyCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							f_title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							f_artist like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='W'.toString()">
+							f_album like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 이어펀's 검색 -->
+	<sql id="earFunCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							e_title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							e_artist like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='W'.toString()">
+							e_album like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 상황별 음악 검색 -->
+	<sql id="moodCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							m_title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							m_artist like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='W'.toString()">
+							m_album like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<sql id="productsCriteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='P'.toString()">
+							p_name like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='B'.toString()">
+							p_brand like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 카테고리 호출 -->
+	<select id="category" resultType="kr.icia.domain.CategoryVO">
+		select
+		level, sub_name,
+		sub_category, sub_codeRef
+		from tbl_sub_category
+		start with sub_codeRef
+		is null connect by prior sub_category = sub_codeRef
+	</select>
+
+	<!-- 상품 등록 -->
+	<insert id="productsRegister">
+		insert into tbl_products (p_no, p_name, p_category,
+		p_sub_category,
+		p_brand, p_price, p_stock, p_contents, p_image,
+		p_thumbImg)
+		values
+		(tbl_seq_products.nextval,
+		#{p_name}, #{p_category},
+		#{p_sub_category},
+		#{p_brand},
+		#{p_price},
+		#{p_stock}, #{p_contents},
+		#{p_image},
+		#{p_thumbImg})
+	</insert>
+
+	<!-- 상품 목록 -->
+	<select id="productsList" resultType="kr.icia.domain.ProductsVO">
+		select
+		p_no, p_name,
+		p_category, p_sub_category, p_brand, p_price, p_point, p_stock,
+		p_contents,
+		p_date,
+		p_updateDate,
+		p_image
+		from tbl_products
+		order by p_no
+		desc
+	</select>
+
+	<!-- 상품 목록 -->
+	<select id="productsCategory01List"
+		resultType="kr.icia.domain.ProductsVO">
+		select
+		p_no, p_name,
+		p_category, p_sub_category, p_brand,
+		p_price, p_point,
+		p_stock, p_contents,
+		p_date,
+		p_updateDate,
+		p_image
+		from
+		tbl_products
+		where p_category = '100'
+		order by p_no desc
+	</select>
+
+	<select id="productsView" resultType="kr.icia.domain.ProductsVO">
+		select * from tbl_products
+		where
+		p_no = #{p_no}
+	</select>
+
+	<!-- 상품 수정 -->
+	<update id="productsModify">
+		update tbl_products
+		set p_name = #{p_name}, p_brand =
+		#{p_brand}, p_price = #{p_price},
+		p_stock = #{p_stock}, p_contents =
+		#{p_contents},
+		p_updateDate = sysdate,
+		p_image = #{p_image},
+		p_thumbImg =
+		#{p_thumbImg}
+		where p_no = #{p_no}
+	</update>
+
+	<!-- 상품 삭제 -->
+	<delete id="productsRemove">
+		delete tbl_products where p_no = #{p_no}
+	</delete>
+
+	<!-- 유저 목록 -->
+	<select id="getList" resultType="kr.icia.domain.UserVO">
+		select *
+		from
+		tbl_user
+		order by
+		u_no desc
+	</select>
+
+	<select id="getListWithPaging"
+		resultType="kr.icia.domain.UserVO">
+	<![CDATA[
+	select u_no, u_id, u_pw, u_name, u_phone, u_email, 
+	u_addr1, u_addr2, u_addr3, approval_status, approval_key, 
+	regdate, auth from
+	(select /*+INDEX_DESC(tbl_user pk_user) */ 
+	rownum rn, u_no, u_id, u_pw, u_name, u_phone, u_email, 
+	u_addr1, u_addr2, u_addr3, approval_status, approval_key, 
+	regdate, auth from tbl_user 
+	where
+	]]>
+
+		<include refid="criteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+
+	</select>
+
+	<!-- 전체 회원 수 -->
+	<select id="getTotalCount" resultType="int">
+		select count(u_no) from tbl_user where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	u_no > 0
+	]]>
+	</select>
+
+
+
+
+
+	<select id="getProductsListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+	<![CDATA[
+	select p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from
+	(select /*+INDEX_DESC(tbl_products pk_products) */ 
+	rownum rn, p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from tbl_products 
+	where
+	]]>
+
+		<include refid="productsCriteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+
+	</select>
+
+	<!-- 전체 회원 수 -->
+	<select id="getProductsTotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0
+	]]>
+	</select>
+
+	<select id="getProductsCategory01TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_category = '100'
+	</select>
+
+
+	<select id="getProductsCategory01ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+	<![CDATA[
+	select p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from
+	(select /*+INDEX_DESC(tbl_products pk_products) */ 
+	rownum rn, p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from tbl_products 
+	where 
+	]]>
+
+		<include refid="productsCriteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+		and p_category = '100'
+	</select>
+
+	<select id="getProductsCategory02TotalCount" resultType="int">
+		select count(p_no) from tbl_products where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	p_no > 0 
+	]]>
+		and p_category = '200'
+	</select>
+
+
+	<select id="getProductsCategory02ListWithPaging"
+		resultType="kr.icia.domain.ProductsVO">
+	<![CDATA[
+	select p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from
+	(select /*+INDEX_DESC(tbl_products pk_products) */ 
+	rownum rn, p_no, p_name, p_category, p_sub_category, p_brand, p_price, p_point, 
+	p_stock, p_contents, p_date, p_updatedate, p_image, 
+	p_thumbimg from tbl_products 
+	where 
+	]]>
+
+		<include refid="productsCriteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+		and p_category = '200'
+	</select>
+
+	<!-- 공지사항 등록 -->
+	<insert id="noticeRegister">
+		INSERT INTO tbl_notice (n_no, n_title, n_contents)
+		VALUES (tbl_seq_notice.nextval, #{n_title}, #{n_contents})
+	</insert>
+
+
+
+	<select id="noticeList" resultType="kr.icia.domain.NoticeVO">
+		<!-- 공지사항 목록 -->
+	<![CDATA[
+	SELECT n_no, n_title, regdate
+	FROM
+	(select /*+INDEX_DESC(tbl_notice pk_notice) */ 
+	rownum rn, n_no, n_title, regdate
+	FROM tbl_notice 
+	where
+	]]>
+		<include refid="criteria" />
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+		order by n_no desc
+	</select>
+
+	<select id="noticePrevList" resultType="kr.icia.domain.NoticeVO">
+		<!-- 공지사항 목록 -->
+		select * from tbl_notice where n_no = 
+			<![CDATA[
+		(select max(n_no) from
+		tbl_notice where n_no<10)
+		]]>
+	</select>
+
+	<!-- 총 공지사항 글 갯수 -->
+	<select id="getNoticeListTotalCount" resultType="int">
+		SELECT
+		COUNT(n_no) FROM tbl_notice WHERE n_no > 0
+	</select>
+
+	<!-- 공지사항 조회 -->
+	<select id="noticeView" resultType="kr.icia.domain.NoticeVO">
+		SELECT n_no, n_title,
+		n_contents, regDate, viewCnt
+		FROM tbl_notice
+		WHERE n_no = #{n_no}
+	</select>
+
+	<!-- 공지사항 수정 -->
+	<update id="noticeModify">
+		UPDATE tbl_notice
+		SET n_title = #{n_title}, n_contents
+		= #{n_contents}
+		WHERE n_no = #{n_no}
+	</update>
+
+	<!-- 공지사항 삭제 -->
+	<delete id="noticeRemove">
+		DELETE tbl_notice WHERE n_no = #{n_no}
+	</delete>
+
+	<!-- 퍼니's 목록 -->
+	<select id="funnyList" resultType="kr.icia.domain.FunnyVO">
+      <![CDATA[
+         SELECT f_no, f_caption, regdate, f_image, f_thumbImg
+         FROM
+            (SELECT /*+INDEX_DESC(tbl_funny pk_funny) */ 
+            rownum rn, f_no, f_caption, regdate, f_image, f_thumbImg
+            FROM tbl_funny 
+            WHERE
+      ]]>
+
+		<include refid="funnyCriteria" />
+      
+      <![CDATA[
+         rownum <= #{pageNum} * #{amount}) 
+         WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]>
+	</select>
+
+	<!-- 퍼니's 이전/다음글 페이징 처리 -->
+	<select id="funnyPrevList" resultType="kr.icia.domain.FunnyVO">
+		SELECT * FROM tbl_funny WHERE f_no = 
+      
+      <![CDATA[
+         (SELECT MAX(f_no) FROM
+         tbl_funny WHERE f_no < 10)
+      ]]>
+	</select>
+
+	<!-- 총 퍼니's 글 갯수 -->
+	<select id="getFunnyListTotalCount" resultType="int">
+		SELECT
+		COUNT(f_no) FROM tbl_funny WHERE f_no > 0
+	</select>
+
+	<!-- 퍼니's 조회 -->
+	<select id="funnyView" resultType="kr.icia.domain.FunnyVO">
+		SELECT f_no, f_caption,
+		f_title01, f_artist01, f_album01,
+		f_title02, f_artist02, f_album02,
+		f_title03, f_artist03, f_album03,
+		f_title04, f_artist04, f_album04,
+		f_title05, f_artist05, f_album05,
+		f_title06, f_artist06, f_album06,
+		f_title07, f_artist07, f_album07,
+		f_title08, f_artist08, f_album08,
+		f_contents, regDate, f_image, f_thumbImg
+		FROM tbl_funny
+		WHERE f_no =
+		#{f_no}
+	</select>
+
+	<!-- 퍼니's 수정 -->
+	<update id="funnyModify">
+		UPDATE tbl_funny
+		SET f_caption = #{f_caption},
+		f_title01 = #{f_title01}, f_artist01 = #{f_artist01}, f_album01 =
+		#{f_album01},
+		f_title02 = #{f_title02}, f_artist02 = #{f_artist02},
+		f_album02 =
+		#{f_album02},
+		f_title03 = #{f_title03}, f_artist03 =
+		#{f_artist03}, f_album03 = #{f_album03},
+		f_title04 = #{f_title04},
+		f_artist04 = #{f_artist04}, f_album04 =
+		#{f_album04},
+		f_title05 =
+		#{f_title05}, f_artist05 = #{f_artist05}, f_album05 = #{f_album05},
+		f_title06 = #{f_title06}, f_artist06 = #{f_artist06}, f_album06 =
+		#{f_album06},
+		f_title07 = #{f_title07}, f_artist07 = #{f_artist07},
+		f_album07 = #{f_album07},
+		f_title08 = #{f_title08}, f_artist08 =
+		#{f_artist08}, f_album08 =
+		#{f_album08},
+		f_contents = #{f_contents},
+		f_image = #{f_image}, f_thumbImg = #{f_thumbImg}
+		WHERE f_no = #{f_no}
+	</update>
+
+	<!-- 퍼니's 삭제 -->
+	<delete id="funnyRemove">
+		DELETE tbl_funny WHERE f_no = #{f_no}
+	</delete>
+
+	<!-- ===================================================== -->
+
+
+
+
+	<!-- 이어펀's 등록 -->
+	<insert id="earFunRegister">
+		INSERT INTO tbl_earfun (e_no, e_caption, e_title01,
+		e_artist01, e_album01, e_video01,
+		e_title02, e_artist02, e_album02,
+		e_video02, e_title03,
+		e_artist03, e_album03, e_video03,
+		e_title04,
+		e_artist04, e_album04, e_video04, e_title05,
+		e_artist05, e_album05,
+		e_video05,
+		e_title06, e_artist06, e_album06, e_video06, e_title07,
+		e_artist07, e_album07, e_video07,
+		e_title08, e_artist08, e_album08,
+		e_video08, e_contents,
+		e_image, e_thumbImg)
+		VALUES
+		(tbl_seq_earfun.nextval, #{e_caption},
+		#{e_title01},
+		#{e_artist01},
+		#{e_album01}, #{e_video01}, #{e_title02}, #{e_artist02},
+		#{e_album02},
+		#{e_video02},
+		#{e_title03},
+		#{e_artist03}, #{e_album03}, #{e_video03},
+		#{e_title04},
+		#{e_artist04},
+		#{e_album04}, #{e_video04},
+		#{e_title05},
+		#{e_artist05}, #{e_album05}, #{e_video05},
+		#{e_title06},
+		#{e_artist06},
+		#{e_album06}, #{e_video06}, #{e_title07}, #{e_artist07},
+		#{e_album07},
+		#{e_video07}, #{e_title08},
+		#{e_artist08}, #{e_album08}, #{e_video08},
+		#{e_contents}, #{e_image}, #{e_thumbImg})
+	</insert>
+
+
+	<!-- 이어펀's 목록 -->
+	<select id="earFunList" resultType="kr.icia.domain.EarFunVO">
+      <![CDATA[
+         SELECT e_no, e_caption, regdate, e_image, e_thumbImg 
+         FROM
+            (SELECT /*+INDEX_DESC(tbl_earfun pk_earfun) */ 
+            rownum rn, e_no, e_caption, regdate, e_image, e_thumbImg 
+            FROM tbl_earfun 
+            WHERE
+      ]]>
+
+		<include refid="earFunCriteria" />
+      
+      <![CDATA[
+         rownum <= #{pageNum} * #{amount}) 
+         WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]>
+	</select>
+
+	<!-- 이어펀's 이전/다음글 페이징 처리 -->
+	<select id="earFunPrevList" resultType="kr.icia.domain.EarFunVO">
+		SELECT * FROM tbl_earfun WHERE e_no = 
+      
+      <![CDATA[
+         (SELECT MAX(e_no) FROM
+         tbl_earfun WHERE e_no < 10)
+      ]]>
+	</select>
+
+	<!-- 총 이어펀's 글 갯수 -->
+	<select id="getEarFunListTotalCount" resultType="int">
+		SELECT
+		COUNT(e_no) FROM tbl_earfun WHERE e_no > 0
+	</select>
+
+	<!-- 이어펀's 조회 -->
+	<select id="earFunView" resultType="kr.icia.domain.EarFunVO">
+		SELECT e_no, e_caption,
+		e_title01, e_artist01, e_album01, e_video01,
+		e_title02, e_artist02,
+		e_album02, e_video02,
+		e_title03, e_artist03, e_album03, e_video03,
+		e_title04, e_artist04, e_album04, e_video04,
+		e_title05, e_artist05,
+		e_album05, e_video05,
+		e_title06, e_artist06, e_album06, e_video06,
+		e_title07, e_artist07, e_album07, e_video07,
+		e_title08, e_artist08,
+		e_album08, e_video08,
+		e_contents, regDate, e_image, e_thumbImg
+		FROM
+		tbl_earfun
+		WHERE e_no =
+		#{e_no}
+	</select>
+
+	<!-- 이어펀's 수정 -->
+	<update id="earFunModify">
+		UPDATE tbl_earfun
+		SET e_caption = #{e_caption},
+		e_title01 = #{e_title01}, e_artist01 = #{e_artist01}, e_album01 =
+		#{e_album01},
+		e_title02 = #{e_title02}, e_artist02 = #{e_artist02},
+		e_album02 =
+		#{e_album02},
+		e_title03 = #{e_title03}, e_artist03 =
+		#{e_artist03}, e_album03 = #{e_album03},
+		e_title04 = #{e_title04},
+		e_artist04 = #{e_artist04}, e_album04 =
+		#{e_album04},
+		e_title05 =
+		#{e_title05}, e_artist05 = #{e_artist05}, e_album05 = #{e_album05},
+		e_title06 = #{e_title06}, e_artist06 = #{e_artist06}, e_album06 =
+		#{e_album06},
+		e_title07 = #{e_title07}, e_artist07 = #{e_artist07},
+		e_album07 = #{e_album07},
+		e_title08 = #{e_title08}, e_artist08 =
+		#{e_artist08}, e_album08 =
+		#{e_album08},
+		e_contents = #{e_contents},
+		e_image = #{e_image}, e_thumbImg = #{e_thumbImg}
+		WHERE e_no = #{e_no}
+	</update>
+
+	<!-- 이어펀's 삭제 -->
+	<delete id="earFunRemove">
+		DELETE tbl_earfun WHERE e_no = #{e_no}
+	</delete>
+
+	<!-- ===================================================== -->
+
+	<!-- 상황별 음악 등록 -->
+	<insert id="moodRegister">
+		INSERT INTO tbl_mood
+		(m_no, m_caption, m_title01,
+		m_artist01, m_album01,
+		m_title02, m_artist02, m_album02, m_title03,
+		m_artist03, m_album03,
+		m_title04, m_artist04, m_album04, m_title05,
+		m_artist05, m_album05,
+		m_title06, m_artist06, m_album06, m_title07,
+		m_artist07, m_album07,
+		m_title08, m_artist08, m_album08, m_contents,
+		m_image, m_thumbImg)
+		VALUES (tbl_seq_mood.nextval, #{m_caption},
+		#{m_title01},
+		#{m_artist01},
+		#{m_album01},
+		#{m_title02}, #{m_artist02},
+		#{m_album02},
+		#{m_title03}, #{m_artist03},
+		#{m_album03},
+		#{m_title04},
+		#{m_artist04},
+		#{m_album04}, #{m_title05}, #{m_artist05},
+		#{m_album05},
+		#{m_title06},
+		#{m_artist06}, #{m_album06}, #{m_title07}, #{m_artist07},
+		#{m_album07},
+		#{m_title08}, #{m_artist08}, #{m_album08}, #{m_contents},
+		#{m_image}, #{m_thumbImg})
+	</insert>
+
+	<!-- 상황별 음악 목록 -->
+	<select id="moodList" resultType="kr.icia.domain.MoodVO">
+      <![CDATA[
+         SELECT m_no, m_caption, regdate, m_image, m_thumbImg
+         FROM
+            (SELECT /*+INDEX_DESC(tbl_mood pk_mood) */ 
+            rownum rn, m_no, m_caption, regdate, m_image, m_thumbImg
+            FROM tbl_mood
+            WHERE
+      ]]>
+
+		<include refid="criteria" />
+      
+      <![CDATA[
+         rownum <= #{pageNum} * #{amount}) 
+         WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]>
+	</select>
+
+	<!-- 상황별 음악 이전/다음글 페이징 처리 -->
+	<select id="moodPrevList" resultType="kr.icia.domain.MoodVO">
+		SELECT * FROM tbl_mood WHERE m_no = 
+      
+      <![CDATA[
+         (SELECT MAX(m_no) FROM
+         tbl_mood WHERE m_no < 10)
+      ]]>
+	</select>
+
+	<!-- 총 상황별 음악 글 갯수 -->
+	<select id="getMoodListTotalCount" resultType="int">
+		SELECT COUNT(m_no)
+		FROM tbl_mood WHERE m_no > 0
+	</select>
+
+	<!-- 상황별 음악 조회 -->
+	<select id="moodView" resultType="kr.icia.domain.MoodVO">
+		SELECT m_no, m_caption,
+		m_title01, m_artist01, m_album01,
+		m_title02, m_artist02, m_album02,
+		m_title03, m_artist03, m_album03,
+		m_title04, m_artist04, m_album04,
+		m_title05, m_artist05, m_album05,
+		m_title06, m_artist06, m_album06,
+		m_title07, m_artist07, m_album07,
+		m_title08, m_artist08, m_album08,
+		m_contents, regDate, m_image, m_thumbImg
+		FROM tbl_mood
+		WHERE m_no =
+		#{m_no}
+	</select>
+
+	<!-- 상황별 음악 수정 -->
+	<update id="moodModify">
+		UPDATE tbl_mood
+		SET m_caption = #{m_caption},
+		m_title01 = #{m_title01}, m_artist01 = #{m_artist01}, m_album01 =
+		#{m_album01},
+		m_title02 = #{m_title02}, m_artist02 = #{m_artist02},
+		m_album02 =
+		#{m_album02},
+		m_title03 = #{m_title03}, m_artist03 =
+		#{m_artist03}, m_album03 = #{m_album03},
+		m_title04 = #{m_title04},
+		m_artist04 = #{m_artist04}, m_album04 =
+		#{m_album04},
+		m_title05 =
+		#{m_title05}, m_artist05 = #{m_artist05}, m_album05 = #{m_album05},
+		m_title06 = #{m_title06}, m_artist06 = #{m_artist06}, m_album06 =
+		#{m_album06},
+		m_title07 = #{m_title07}, m_artist07 = #{m_artist07},
+		m_album07 = #{m_album07},
+		m_title08 = #{m_title08}, m_artist08 =
+		#{m_artist08}, m_album08 =
+		#{m_album08},
+		m_contents = #{m_contents},
+		m_image = #{m_image}, m_thumbImg = #{m_thumbImg}
+		WHERE m_no = #{m_no}
+	</update>
+
+	<!-- 상황별 음악 삭제 -->
+	<delete id="moodRemove">
+		DELETE tbl_mood WHERE m_no = #{m_no}
+	</delete>
+
+	<!-- 모든 유저의 주문 목록 -->
+	<select id="orderList" resultType="kr.icia.domain.OrderVO">
+		select
+		o_id, u_id, o_rec,
+		u_addr1, u_addr2, u_addr3,
+		o_phone, total_price, o_date, status
+		from
+		tbl_order
+	</select>
+
+	<!-- 특정 주문 목록 -->
+	<select id="orderView" resultType="kr.icia.domain.OrderListVO">
+		select o.o_id, o.u_id,
+		o.o_rec, o.u_addr1, o.u_addr2, o.u_addr3, o.o_phone, o.total_price,
+		o.o_date, o.status,
+		d.o_no, d.p_no, d.c_stock, p.p_name, p.p_thumbImg,
+		p.p_price
+		from tbl_order o inner join tbl_order_details d
+		on o.o_id =
+		d.o_id inner join tbl_products p
+		on d.p_no = p.p_no where o.o_id =
+		#{o_id}
+	</select>
+
+	<!-- 배송 상태 변경 -->
+	<update id="status">
+		update tbl_order
+		set status = #{status}
+		where o_id =
+		#{o_id}
+	</update>
+
+	<!-- 상품 수량 조절 -->
+	<update id="decreaseStock">
+		update tbl_products
+		set p_stock = p_stock - #{p_stock}
+		where p_no = #{p_no}
+	</update>
+
+	<select id="getReportListWithPaging"
+		resultType="kr.icia.domain.ReportVO">
+	<![CDATA[
+	select r_no, r_writer, r_contents, r_reason, regDate, status from
+	(select /*+INDEX_DESC(tbl_report pk_report) */ 
+	rownum rn, r_no, r_writer, r_contents, r_reason, regDate, status from tbl_report 
+	where
+	]]>
+
+		<include refid="productsCriteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+		and status = '처리 대기'
+
+	</select>
+
+	<select id="getReportTotalCount" resultType="int">
+		select count(r_no) from tbl_report where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	r_no > 0
+	]]>
+		and status = '처리 대기'
+	</select>
+
+	<!-- 신고 상태 -->
+	<update id="reportStatus">
+		update tbl_report
+		set status = #{status}
+		where r_no =
+		#{r_no}
+	</update>
+
+	<select id="reportView" resultType="kr.icia.domain.ReportVO">
+		select * from tbl_report
+		where
+		r_no = #{r_no}
+	</select>
+
+	<delete id="reportRemove">
+		DELETE tbl_report WHERE r_no = #{r_no}
+	</delete>
+
+	<select id="getUserBlackListWithPaging"
+		resultType="kr.icia.domain.ReportVO">
+	<![CDATA[
+	select r_no, r_writer, r_contents, r_reason, regdate, status 
+	from
+	(select /*+INDEX_DESC(tbl_report pk_report) */ 
+	rownum rn, r_no, r_writer, r_contents, r_reason, regdate, status from tbl_report 
+	where
+	]]>
+
+		<include refid="criteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+
+		and status = '승인'
+
+	</select>
+
+	<!-- 전체 회원 수 -->
+	<select id="getUserBlackListTotalCount" resultType="int">
+		select count(status) from tbl_report where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	status = '승인'
+	]]>
+	</select>
+
+	<select id="getQnAListWithPaging"
+		resultType="kr.icia.domain.QnAVO">
+	<![CDATA[
+	select q_no, q_category, q_writer, q_title, q_contents, q_date, status from
+	(select /*+INDEX_DESC(tbl_qna pk_qna) */ 
+	rownum rn, q_no, q_category, q_writer, q_title, q_contents, q_date, status from tbl_qna 
+	where
+	]]>
+
+		<include refid="criteria" />
+	
+	<![CDATA[
+	rownum <= #{pageNum} * #{amount}) 
+	where rn > (#{pageNum}-1) * #{amount}
+	]]>
+		and status = '답변 대기'
+
+	</select>
+
+	<!-- 전체 회원 수 -->
+	<select id="getQnATotalCount" resultType="int">
+		select count(q_no) from tbl_qna where
+
+		<include refid="criteria" />
+	
+	<![CDATA[ 
+	q_no > 0
+	]]>
+		and status = '답변 대기'
+	</select>
+
+	<!-- 이어펀's 조회 -->
+	<select id="qnaView" resultType="kr.icia.domain.QnAVO">
+		SELECT q_no, q_category,
+		q_writer, q_title, q_contents, q_date
+		FROM tbl_qna
+		WHERE q_no =
+		#{q_no}
+	</select>
+
+	<insert id="qnaReplyRegister">
+		INSERT INTO tbl_qna_reply (q_no, r_contents)
+		VALUES
+		(#{q_no}, #{r_contents})
+	</insert>
+
+	<update id="qnaStatus">
+		update tbl_qna
+		set status = #{status}
+		where q_no =
+		#{q_no}
+	</update>
+
+	<select id="qnaReply" resultType="kr.icia.domain.QnAReplyVO">
+		SELECT q_no, r_contents,
+		r_date
+		FROM tbl_qna_reply
+		WHERE q_no = #{q_no}
+	</select>
+</mapper>

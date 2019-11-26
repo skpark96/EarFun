@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.icia.mapper.AttachMapper">
+
+	<insert id="insert">
+		insert into tbl_attach (uuid, uploadpath, filename,
+		filetype, p_no) values (#{uuid},#{uploadPath},#{fileName}
+		,#{fileType},#{p_no})
+	</insert>
+
+	<delete id="delete">
+		delete from tbl_attach where uuid=#{uuid}
+	</delete>
+
+	<select id="findByP_no" resultType="kr.icia.domain.AttachVO">
+		select * from tbl_attach
+		where p_no=#{p_no}
+	</select>
+
+	<delete id="deleteAll">
+		delete from tbl_attach where p_no=#{p_no}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
